@@ -1,9 +1,10 @@
 import Image from "next/image";
+import { headers } from "next/headers";
 
-export const dynamic = "force-dynamic";
-
-export default function Home() {
-  console.trace("Home page rendered");
+export default async function Home() {
+  const headersList = await headers();
+  const lang = headersList.get("accept-language")?.split(",")[0];
+  console.trace("lang", lang);
 
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
